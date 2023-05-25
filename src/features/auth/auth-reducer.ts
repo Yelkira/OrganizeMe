@@ -2,6 +2,9 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {authAPI, LoginParamsType} from 'api/todolists-api'
 import {appActions} from "app/app-reducer";
 import {AppThunk} from "app/store";
+import {clearTasksAndTodo} from "common/actions/common.actions";
+import {tasksActions} from "features/TodolistsList/tasks-reducer";
+import {todolistsActions} from "features/TodolistsList/todolists-reducer";
 import {handleServerAppError, handleServerNetworkError} from 'utils/error-utils'
 
 
@@ -43,6 +46,7 @@ export const logoutTC = (): AppThunk => (dispatch) => {
         .then(res => {
             if (res.data.resultCode === 0) {
                 dispatch(authActions.setIsLoggedIn({isLoggedIn: false}))
+                dispatch(clearTasksAndTodo({tasks: {}, todolists: []}))
                 dispatch(appActions.setAppStatus({status: 'succeeded'}))
             } else {
                 handleServerAppError(res.data, dispatch)
