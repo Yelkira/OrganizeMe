@@ -1,11 +1,11 @@
-import {Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, TextField} from '@mui/material'
-import {selectIsLoggedIn} from "features/auth/auth.selectors";
-import {useFormik} from 'formik'
-import {useAppDispatch} from 'common/hooks/useAppDispatch';
 import React from 'react'
-import {useSelector} from 'react-redux'
-import {Navigate} from 'react-router-dom'
-import {loginTC} from './auth-reducer'
+import { useFormik } from 'formik'
+import { useSelector } from 'react-redux'
+import { Navigate } from 'react-router-dom'
+import { Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, TextField } from '@mui/material'
+import { loginTC } from 'features/auth/auth.reducer'
+import { useAppDispatch } from 'common/hooks';
+import { selectIsLoggedIn } from 'features/auth/auth.selectors';
 
 export const Login = () => {
     const dispatch = useAppDispatch()
@@ -37,7 +37,7 @@ export const Login = () => {
     })
 
     if (isLoggedIn) {
-        return <Navigate to={"/"}/>
+        return <Navigate to={"/"} />
     }
 
 
@@ -65,14 +65,14 @@ export const Login = () => {
                             margin="normal"
                             {...formik.getFieldProps("email")}
                         />
-                        {formik.touched.email && formik.errors.email ? <div>{formik.errors.email}</div> : null}
+                        {formik.errors.email ? <div>{formik.errors.email}</div> : null}
                         <TextField
                             type="password"
                             label="Password"
                             margin="normal"
                             {...formik.getFieldProps("password")}
                         />
-                        {formik.touched.password && formik.errors.password ? <div>{formik.errors.password}</div> : null}
+                        {formik.errors.password ? <div>{formik.errors.password}</div> : null}
                         <FormControlLabel
                             label={'Remember me'}
                             control={<Checkbox
