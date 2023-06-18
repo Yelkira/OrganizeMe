@@ -1,4 +1,4 @@
-import {TodolistType} from 'api/todolists-api'
+import {TodolistType} from 'common/api/todolists-api'
 import {RequestStatusType} from 'app/app-reducer'
 import {v1} from 'uuid'
 import {FilterValuesType, TodolistDomainType, todolistsActions, todolistsReducer} from './todolists-reducer'

@@ -10,7 +10,7 @@ import {
     Typography
 } from '@mui/material';
 import {selectIsInitialized, selectStatus} from "app/app.selectors";
-import {ErrorSnackbar} from 'components/ErrorSnackbar/ErrorSnackbar'
+import {ErrorSnackbar} from 'common/components/ErrorSnackbar/ErrorSnackbar'
 import {logoutTC} from 'features/auth/auth-reducer'
 import {selectIsLoggedIn} from "features/auth/auth.selectors";
 import {Login} from 'features/auth/Login'

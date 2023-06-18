@@ -1,19 +1,20 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {
-    AddTaskArgType,
+    AddTaskArgType, ResultCode,
     TaskPriorities,
     TaskStatuses,
     TaskType,
     todolistsAPI,
     UpdateTaskModelType
-} from 'api/todolists-api'
+} from 'common/api/todolists-api'
 import {appActions} from "app/app-reducer";
 import {AppThunk} from 'app/store'
 import {clearTasksAndTodo} from "common/actions/common.actions";
 import {todolistsActions} from "features/TodolistsList/todolists-reducer";
 import {Dispatch} from "redux";
-import {handleServerAppError, handleServerNetworkError} from 'utils/error-utils'
-import {createAppSyncThunk} from "../../utils/create-app-sync-thunk";
+import {createAppSyncThunk} from "common/utils";
+import {handleServerAppError} from "common/utils";
+import {handleServerNetworkError} from "common/utils";
 
 const initialState: TasksStateType = {}
 type AsyncThunkConfig = {
@@ -73,11 +74,11 @@ const updateTask =
     ("tasks/updateTasks", async (arg, thunkAPI) => {
         const {dispatch, getState, rejectWithValue} = thunkAPI
         try {
+            dispatch(appActions.setAppStatus({status: 'loading'}))
             const state = getState()
             const task = state.tasks[arg.todolistId].find(t => t.id === arg.taskId)
             if (!task) {
-                //throw new Error("task not found in the state");
-                console.warn('task not found in the state')
+                dispatch(appActions.setAppError({error: 'task not found in the state'}))
                 return rejectWithValue(null)
             }
 
@@ -92,7 +93,8 @@ const updateTask =
             }
             const res = await todolistsAPI.updateTask(arg.todolistId, arg.taskId, apiModel)
 
-            if (res.data.resultCode === 0) {
+            if (res.data.resultCode === ResultCode.Success) {
+                dispatch(appActions.setAppStatus({status: 'succeeded'}))
                 return arg
             } else {
                 handleServerAppError(res.data, dispatch);

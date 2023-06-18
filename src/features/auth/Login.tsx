@@ -1,7 +1,7 @@
 import {Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, TextField} from '@mui/material'
 import {selectIsLoggedIn} from "features/auth/auth.selectors";
 import {useFormik} from 'formik'
-import {useAppDispatch} from 'hooks/useAppDispatch';
+import {useAppDispatch} from 'common/hooks/useAppDispatch';
 import React from 'react'
 import {useSelector} from 'react-redux'
 import {Navigate} from 'react-router-dom'

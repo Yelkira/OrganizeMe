@@ -1,4 +1,4 @@
-import {TaskPriorities, TaskStatuses} from 'api/todolists-api'
+import {TaskPriorities, TaskStatuses} from 'common/api/todolists-api'
 import {tasksActions, tasksReducer, TasksStateType, tasksThunks} from './tasks-reducer'
 
 import {todolistsActions} from './todolists-reducer'
@@ -74,7 +74,7 @@ test('correct task should be added to correct array', () => {
 });
 test('status of specified task should be changed', () => {
     const args = {taskId: "2", domainModel: {status: TaskStatuses.New}, todolistId: "todolistId2"}
-    const action = tasksThunks.updateTask.fulfilled(args, "", args);
+    const action = tasksThunks.updateTask.fulfilled(args, "requestId", args);
 
     const endState = tasksReducer(startState, action)
 
@@ -83,7 +83,7 @@ test('status of specified task should be changed', () => {
 });
 test('title of specified task should be changed', () => {
     const args = {taskId: "2", domainModel: {title: "yogurt"}, todolistId: "todolistId2"}
-    const action = tasksThunks.updateTask.fulfilled(args, "", args);
+    const action = tasksThunks.updateTask.fulfilled(args, "requestId", args);
 
     const endState = tasksReducer(startState, action)
 
