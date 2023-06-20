@@ -16,8 +16,8 @@ const login = createAppAsyncThunk<{ isLoggedIn: boolean }, LoginParamsType>
             dispatch(appActions.setAppStatus({status: 'succeeded'}))
             return {isLoggedIn: true}
         } else {
-            handleServerAppError(res.data, dispatch)
-            return rejectWithValue(null)
+            handleServerAppError(res.data, dispatch, false)
+            return rejectWithValue(res.data)
         }
     } catch (e) {
         handleServerNetworkError(e, dispatch)
@@ -43,11 +43,11 @@ const logout = createAppAsyncThunk<{ isLoggedIn: boolean }, void>
         return rejectWithValue(null)
     }
 })
-export const initializeApp = createAppAsyncThunk<{isLoggedIn: boolean},void>
-("app/initializeApp", async (_, thunkAPI)=>{
+export const initializeApp = createAppAsyncThunk<{ isLoggedIn: boolean }, void>
+("app/initializeApp", async (_, thunkAPI) => {
     const {dispatch, rejectWithValue} = thunkAPI
     try {
-        const res = await  authAPI.me()
+        const res = await authAPI.me()
         if (res.data.resultCode === ResultCode.Success) {
             return {isLoggedIn: true}
         } else {
@@ -56,8 +56,7 @@ export const initializeApp = createAppAsyncThunk<{isLoggedIn: boolean},void>
     } catch (e) {
         handleServerNetworkError(e, dispatch)
         return rejectWithValue(null)
-    }
-    finally {
+    } finally {
         dispatch(appActions.setAppInitialized({isInitialized: true}));
     }
 })

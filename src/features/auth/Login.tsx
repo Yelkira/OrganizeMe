@@ -2,10 +2,12 @@ import {Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, G
 import {useAppDispatch} from 'common/hooks';
 import {authThunks} from 'features/auth/auth.reducer'
 import {selectIsLoggedIn} from 'features/auth/auth.selectors';
-import {useFormik} from 'formik'
+import {FormikHelpers, useFormik} from 'formik'
 import React from 'react'
 import {useSelector} from 'react-redux'
 import {Navigate} from 'react-router-dom'
+import {CommonResponseType} from "../../common/types";
+import {LoginParamsType} from "./auth.api";
 
 export const Login = () => {
     const dispatch = useAppDispatch()
@@ -31,13 +33,19 @@ export const Login = () => {
             password: '',
             rememberMe: false
         },
-        onSubmit: values => {
-            dispatch(authThunks.login(values));
+        onSubmit: (values, formikHelpers: FormikHelpers<LoginParamsType>) => {
+            dispatch(authThunks.login(values))
+                .unwrap()
+                .catch((res: CommonResponseType) => {
+                    res.fieldsErrors.forEach((el)=>{
+                        formikHelpers.setFieldError(el.field, el.error)
+                    })
+                })
         },
     })
 
     if (isLoggedIn) {
-        return <Navigate to={"/"} />
+        return <Navigate to={"/"}/>
     }
 
 

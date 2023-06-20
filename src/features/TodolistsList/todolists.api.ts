@@ -1,34 +1,34 @@
 import { instance } from 'common/api/common.api';
 import { TaskPriorities, TaskStatuses } from 'common/enums/common.enums';
 import { UpdateDomainTaskModelType } from 'features/TodolistsList/tasks.reducer';
-import { ResponseType } from 'common/types/common.types';
+import { CommonResponseType } from 'common/types/common.types';
 
 export const todolistsApi = {
 	getTodolists() {
 		return instance.get<TodolistType[]>('todo-lists');
 	},
 	createTodolist(title: string) {
-		return instance.post<ResponseType<{ item: TodolistType }>>('todo-lists', {title: title});
+		return instance.post<CommonResponseType<{ item: TodolistType }>>('todo-lists', {title: title});
 	},
 	deleteTodolist(id: string) {
-		return instance.delete<ResponseType>(`todo-lists/${id}`);
+		return instance.delete<CommonResponseType>(`todo-lists/${id}`);
 	},
 	updateTodolist(arg: UpdateTodolistTitleArgType) {
-		return instance.put<ResponseType>(`todo-lists/${arg.id}`, {title: arg.title});
+		return instance.put<CommonResponseType>(`todo-lists/${arg.id}`, {title: arg.title});
 	},
 	getTasks(todolistId: string) {
 		return instance.get<GetTasksResponse>(`todo-lists/${todolistId}/tasks`);
 	},
 	deleteTask(arg: RemoveTaskArgType) {
-		return instance.delete<ResponseType>(`todo-lists/${arg.todolistId}/tasks/${arg.taskId}`);
+		return instance.delete<CommonResponseType>(`todo-lists/${arg.todolistId}/tasks/${arg.taskId}`);
 	},
 	createTask(arg: AddTaskArgType) {
-		return instance.post<ResponseType<{
+		return instance.post<CommonResponseType<{
 			item: TaskType
 		}>>(`todo-lists/${arg.todolistId}/tasks`, {title: arg.title});
 	},
 	updateTask(todolistId: string, taskId: string, model: UpdateTaskModelType) {
-		return instance.put<ResponseType<TaskType>>(`todo-lists/${todolistId}/tasks/${taskId}`, model);
+		return instance.put<CommonResponseType<TaskType>>(`todo-lists/${todolistId}/tasks/${taskId}`, model);
 	}
 }
 
