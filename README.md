@@ -1,44 +1,30 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# OrganaizeMe
 
-## Available Scripts
+OrganaizeMe is a task management application built using React, Redux Toolkit (RTK), Axios, Material-UI (MUi), and React Router. It provides a user-friendly interface for creating, managing, and deleting tasks, helping you stay organized and productive.
 
-In the project directory, you can run:
+## Technologies
 
-### `yarn start`
+- React
+- Redux Toolkit (RTK)
+- Axios
+- Material-UI (MUi)
+- React Router
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Key Features
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- Create new tasks with custom titles, descriptions, and due dates
+- Mark tasks as completed
+- Edit existing tasks
+- Delete tasks
+- Categorize tasks using labels or tags
+- Filter and sort tasks based on various criteria
+- User authentication and authorization
 
-### `yarn test`
+## Getting Started
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To run the application locally, follow these steps:
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Clone the repository to your local machine.
+2. Install the necessary dependencies using your preferred package manager.
+3. Start the development server.
+4. Open the application in a web browser.
