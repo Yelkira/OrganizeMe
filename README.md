@@ -9,6 +9,7 @@ OrganaizeMe is a task management application built using React, Redux Toolkit (R
 - Axios
 - Material-UI (MUi)
 - React Router
+- Formik
 
 ## Key Features
 
